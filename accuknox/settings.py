@@ -94,8 +94,6 @@ REST_FRAMEWORK = {
         'user': '1000/day',
         "friend_requests": '5/minute', # throttle limit per minute
     }
-
-  
 }
 
 WSGI_APPLICATION = 'accuknox.wsgi.application'

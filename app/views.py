@@ -1,7 +1,7 @@
 
 from .serializers import UserModelSerializer,MyTokenobtainpairSerializer,FriendsSerializer
 from .models import UserModel,FriendsModel
-from rest_framework.generics import CreateAPIView,ListAPIView
+# from rest_framework.generics import CreateAPIView,ListAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -13,6 +13,8 @@ from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.permissions import BasePermission
+from rest_framework.throttling import UserRateThrottle
+from .throttle import FriendRequestThrottle
 # Create your views here.
 
 
@@ -83,6 +85,7 @@ class LogoutView(APIView):
 
 class FriendsView(ModelViewSet):
     permission_classes = [IsAuthenticated] 
+    throttle_classes = [FriendRequestThrottle,UserRateThrottle]
     serializer_class = FriendsSerializer
 
     def get_queryset(self):
