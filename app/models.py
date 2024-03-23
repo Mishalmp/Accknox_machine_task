@@ -22,6 +22,8 @@ class FriendsModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # class Meta:
+    #     unique_together = ['from_user',"to_user"]
 
     def __str__(self):
         return f"Friend request from {self.from_user.username} to {self.to_user.username} - {self.status}"
